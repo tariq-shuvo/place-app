@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Platform, View, StyleSheet, TextInput, Button} from 'react-native';
-import OutputPlace from '../outputComponent/OutputPlace';
+
 
 const platformSpecificStyle = Platform.select({
     ios:{
@@ -21,8 +21,7 @@ class PlaceInput extends Component{
     constructor(props){
         super(props)
         this.state={
-            inputText:'',
-            places:[]
+            inputText:''
           }
     }
 
@@ -31,15 +30,7 @@ class PlaceInput extends Component{
           return "";
         }
     
-        this.setState((prevState)=>{
-          return {
-            places: prevState.places.concat(prevState.inputText)
-          }
-        },()=>{
-          this.setState({
-            inputText:''
-          })
-        })
+        this.props.addPlaceData(this.state.inputText)
       }
 
     render(){
@@ -51,7 +42,6 @@ class PlaceInput extends Component{
                     })}} placeholder={'Please enter a value'}/>
                     <Button style={styles.okayButton} onPress={this._onSubmitHandler} title={'Ok'}/>
                 </View>
-                <OutputPlace places={this.state.places}/>
             </View>
         )
     }
