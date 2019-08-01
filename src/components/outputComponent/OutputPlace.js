@@ -1,14 +1,11 @@
 import React from 'react'
-import {View} from 'react-native';
+import {FlatList} from 'react-native';
 import ListItem from '../listItem/ListItem';
 
 const OutputPlace = (props) => {
-    const placesOutput = props.places.map((place, i)=><ListItem key={i} placeName={place}/>)
 
     return (
-        <View>
-          {placesOutput}
-        </View>
+        <FlatList data={props.places} renderItem={({item})=><ListItem placeName={item.value} placeImage={item.image} onPressItem={()=>props.onPressModal(item.key)}/>}/>
     )
 }
 

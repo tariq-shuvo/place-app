@@ -19,7 +19,7 @@ const platformSpecificStyle = Platform.select({
 
 class PlaceInput extends Component{
     constructor(props){
-        super(props)
+        super(props) 
         this.state={
             inputText:''
           }
@@ -31,18 +31,19 @@ class PlaceInput extends Component{
         }
     
         this.props.addPlaceData(this.state.inputText)
+        // this.setState({
+        //     inputText:''
+        // })
       }
 
     render(){
         return(
-            <View>
-                <View style={styles.inputContainer}>
+            <View style={styles.inputContainer}>
                     <TextInput value={this.state.inputText} style={[{width: '80%', borderBottomWidth:1, borderBottomColor:'black'}, platformSpecificStyle.inputField]} onChangeText={(val)=>{this.setState({
                     inputText:val
                     })}} placeholder={'Please enter a value'}/>
                     <Button style={styles.okayButton} onPress={this._onSubmitHandler} title={'Ok'}/>
                 </View>
-            </View>
         )
     }
 }
